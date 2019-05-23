@@ -44,6 +44,10 @@ public class Game {
         this.totalScore = totalScore;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public Team getHomeTeam() {
         return homeTeam;
     }
@@ -69,5 +73,15 @@ public class Game {
     @Override
     public int hashCode() {
         return Objects.hash(homeTeam, awayTeam, totalScore);
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id='" + id + '\'' +
+                ", homeTeam=" + homeTeam +
+                ", awayTeam=" + awayTeam +
+                ", totalScore=" + totalScore +
+                '}';
     }
 }

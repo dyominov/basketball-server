@@ -1,11 +1,13 @@
 package com.dyominov.basketball.endpoints;
 
+import com.dyominov.basketball.model.DataGame;
 import com.dyominov.basketball.model.Game;
-import com.dyominov.basketball.model.Team;
+import com.dyominov.basketball.model.Result;
 import com.dyominov.basketball.service.GameService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -37,12 +39,16 @@ public class GameController {
         return gameService.create(game);
     }
 
-    @PutMapping("/over")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Double overCurrentTotal(@RequestBody final Game game) {
-        Team home = game.getHomeTeam();
-        Team away = game.getAwayTeam();
-        Double score = game.getTotalScore();
-        return gameService.overCurrentTotal(home, away, score);
+    @PutMapping("/result")
+    @ResponseStatus(HttpStatus.OK)
+    public Result getResult(@RequestBody final DataGame game) {
+        return gameService.getResult(game.getHomeTeam(), game.getAwayTeam(), game.getTotalScore(), game.getHomeScore(), game.getAwayScore(),game.getHandicape());
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteById(@PathVariable final String id) {
+        gameService.deleteById(id);
+    }
+
 }
