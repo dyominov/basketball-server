@@ -51,4 +51,11 @@ public class GameController {
         gameService.deleteById(id);
     }
 
+
+    @GetMapping("/parse")
+    @ResponseStatus(HttpStatus.OK)
+    public void parseData() {
+        gameService.parseData();
+    }
+
 }

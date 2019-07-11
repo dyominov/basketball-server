@@ -19,4 +19,6 @@ public interface GameService {
     Game create(Game game);
 
     void deleteById(String id);
+
+    void parseData();
 }
