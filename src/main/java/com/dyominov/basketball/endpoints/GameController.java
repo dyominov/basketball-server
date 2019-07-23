@@ -35,14 +35,15 @@ public class GameController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Game createGame(@RequestBody final Game game) {
-        return gameService.create(game);
+    public Game createGame(@RequestBody final Byte[] game) {
+        System.out.println(Arrays.toString(game));
+        return gameService.create(new Game());
     }
 
     @PutMapping("/result")
     @ResponseStatus(HttpStatus.OK)
     public Result getResult(@RequestBody final DataGame game) {
-        return gameService.getResult(game.getHomeTeam(), game.getAwayTeam(), game.getTotalScore(), game.getHomeScore(), game.getAwayScore(),game.getHandicape());
+        return gameService.getResult(game.getHomeTeam(), game.getAwayTeam(), game.getTotalScore(), game.getHomeScore(), game.getAwayScore(),game.getHandicape(), game.getHalfScore(), game.getHalfHandicape());
     }
 
     @DeleteMapping("/{id}")

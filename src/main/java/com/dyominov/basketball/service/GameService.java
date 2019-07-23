@@ -14,7 +14,7 @@ public interface GameService {
 
     List<Game> getAllByHomeTeamAndAwayTeam(Team homeTeam, Team awayTeam);
 
-    Result getResult(final Team homeTeam, final Team awayTeam, final Double score, final Double homeScore, final Double awayScore,final Double handicape);
+    Result getResult(final Team homeTeam, final Team awayTeam, final Double score, final Double homeScore, final Double awayScore, final Double handicape, final Double halfScore, final Double halfHandicape);
 
     Game create(Game game);
 

@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class Result {
     private Double percentHome;
-    private Double averageHome;
+    private Double handicapHalf;
     private Double percentAway;
-    private Double averageAway;
+    private Double averageHalf;
     private Double minTotal;
     private Double averageTotal;
     private Double maxTotal;
@@ -15,11 +15,11 @@ public class Result {
     public Result() {
     }
 
-    public Result(Double percentHome, Double averageHome, Double percentAway, Double averageAway, Double minTotal, Double averageTotal, Double maxTotal, Double handicape) {
+    public Result(Double percentHome, Double percentAway, Double handicapHalf, Double averageHalf, Double minTotal, Double averageTotal, Double maxTotal, Double handicape) {
         this.percentHome = percentHome;
-        this.averageHome = averageHome;
+        this.handicapHalf = handicapHalf;
         this.percentAway = percentAway;
-        this.averageAway = averageAway;
+        this.averageHalf = averageHalf;
         this.minTotal = minTotal;
         this.averageTotal = averageTotal;
         this.maxTotal = maxTotal;
@@ -34,12 +34,12 @@ public class Result {
         this.percentHome = percentHome;
     }
 
-    public Double getAverageHome() {
-        return averageHome;
+    public Double getHandicapHalf() {
+        return handicapHalf;
     }
 
-    public void setAverageHome(Double averageHome) {
-        this.averageHome = averageHome;
+    public void setHandicapHalf(Double handicapHalf) {
+        this.handicapHalf = handicapHalf;
     }
 
     public Double getPercentAway() {
@@ -50,12 +50,12 @@ public class Result {
         this.percentAway = percentAway;
     }
 
-    public Double getAverageAway() {
-        return averageAway;
+    public Double getAverageHalf() {
+        return averageHalf;
     }
 
-    public void setAverageAway(Double averageAway) {
-        this.averageAway = averageAway;
+    public void setAverageHalf(Double averageHalf) {
+        this.averageHalf = averageHalf;
     }
 
     public Double getMinTotal() {
@@ -96,9 +96,9 @@ public class Result {
         if (o == null || getClass() != o.getClass()) return false;
         Result result = (Result) o;
         return Objects.equals(percentHome, result.percentHome) &&
-                Objects.equals(averageHome, result.averageHome) &&
+                Objects.equals(handicapHalf, result.handicapHalf) &&
                 Objects.equals(percentAway, result.percentAway) &&
-                Objects.equals(averageAway, result.averageAway) &&
+                Objects.equals(averageHalf, result.averageHalf) &&
                 Objects.equals(minTotal, result.minTotal) &&
                 Objects.equals(averageTotal, result.averageTotal) &&
                 Objects.equals(maxTotal, result.maxTotal) &&
@@ -107,6 +107,20 @@ public class Result {
 
     @Override
     public int hashCode() {
-        return Objects.hash(percentHome, averageHome, percentAway, averageAway, minTotal, averageTotal, maxTotal, handicape);
+        return Objects.hash(percentHome, handicapHalf, percentAway, averageHalf, minTotal, averageTotal, maxTotal, handicape);
+    }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "percentHome=" + percentHome +
+                ", handicapHalf=" + handicapHalf +
+                ", percentAway=" + percentAway +
+                ", averageHalf=" + averageHalf +
+                ", minTotal=" + minTotal +
+                ", averageTotal=" + averageTotal +
+                ", maxTotal=" + maxTotal +
+                ", handicape=" + handicape +
+                '}';
     }
 }
