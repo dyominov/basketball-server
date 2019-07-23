@@ -4,7 +4,6 @@ import com.dyominov.basketball.model.Game;
 import com.dyominov.basketball.model.Result;
 import com.dyominov.basketball.model.Team;
 import com.dyominov.basketball.repository.GameRepository;
-import org.bson.Document;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -37,23 +36,19 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Result getResult(final Team homeTeam, final Team awayTeam, final Double score, final Double homeScore, final Double awayScore, final Double handicape) {
+    public Result getResult(final Team homeTeam, final Team awayTeam, final Double score, final Double homeScore, final Double awayScore, final Double handicape, final Double halfScore, final Double halfHandicape) {
         List<Game> games = getAllByHomeTeamAndAwayTeam(homeTeam, awayTeam);
-        List<Game> gamesHomeTeam = getAllByHomeTeam(homeTeam);
-        List<Game> gamesAwayTeam = getAllByAwayTeam(awayTeam);
-        double percentHomeH = gamesHomeTeam.stream().filter(g -> g.getHomeTeam().getScore() >= homeScore).count() / (gamesHomeTeam.size() + 0.0);
-        double percentAwayA = gamesAwayTeam.stream().filter(g -> g.getAwayTeam().getScore() >= awayScore).count() / (gamesAwayTeam.size() + 0.0);
 
         double size = games.size();
         double handicap = games.stream().filter(g -> g.getHomeTeam().getScore() + handicape > g.getAwayTeam().getScore()).count() / size;
+        double handicapHalf = games.stream().filter(g -> g.getHomeTeam().getHalfScore() + halfHandicape > g.getAwayTeam().getHalfScore()).count() / size;
         double average = games.stream().filter(g -> g.getTotalScore() > score).count() / size;
+        double averageHalf = games.stream().filter(g -> g.getHalfScore() > halfScore).count() / size;
         double minTotal = games.stream().filter(g -> g.getTotalScore() > score - 3).count() / size;
         double maxTotal = games.stream().filter(g -> g.getTotalScore() > score + 3).count() / size;
         double percentHome = games.stream().filter(g -> g.getHomeTeam().getScore() >= homeScore).count() / size;
-        double averageHome = games.stream().mapToDouble(game -> game.getHomeTeam().getScore()).sum() / size;
         double percentAway = games.stream().filter(g -> g.getAwayTeam().getScore() >= awayScore).count() / size;
-        double averageAway = games.stream().mapToDouble(game -> game.getAwayTeam().getScore()).sum() / size;
-        return new Result(percentHome, percentHomeH, percentAway, percentAwayA, minTotal, average, maxTotal, handicap);
+        return new Result(percentHome, percentAway, handicapHalf, averageHalf,  minTotal, average, maxTotal, handicap);
     }
 
     private List<Game> getAllByAwayTeam(Team awayTeam) {
@@ -78,8 +73,12 @@ public class GameServiceImpl implements GameService {
     public void parseData() {
         try (Scanner in = new Scanner(new File("input.txt"))) {
             List<Game> games = new ArrayList<>();
-            for (int i = 0; i < 240; i++) {
+            for (int i = 0; i < 1920; i++) {
                 String date = in.nextLine();
+                if (date.length() < 3){
+                    date = in.nextLine();
+
+                }
                 String[] teams = in.nextLine().trim().split(" - ");
                 String[] line = in.nextLine().trim().split("\t");
                 String[] scoreOne = line[3].trim().split(":");
