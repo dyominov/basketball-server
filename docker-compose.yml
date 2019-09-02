@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  api:
+    build: ./basketball-server/
+    image: basketball-server
+    ports:
+      - "8080:8080"
+  client:
+    build: ./basketball-site/
+    image: basketball-site-image
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URI=api:8080

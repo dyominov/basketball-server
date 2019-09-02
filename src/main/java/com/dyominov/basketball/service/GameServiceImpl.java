@@ -73,7 +73,7 @@ public class GameServiceImpl implements GameService {
     public void parseData() {
         try (Scanner in = new Scanner(new File("input.txt"))) {
             List<Game> games = new ArrayList<>();
-            for (int i = 0; i < 1920; i++) {
+            for (int i = 0; i < 2160; i++) {
                 String date = in.nextLine();
                 if (date.length() < 3){
                     date = in.nextLine();
@@ -85,10 +85,10 @@ public class GameServiceImpl implements GameService {
                 String[] scoreTwo = line[4].trim().split(":");
                 String[] score = line[line.length - 1].trim().split(":");
                 Game game = new Game(date,
-                        new Team(teams[0], Double.valueOf(scoreOne[0]) + Double.valueOf(scoreTwo[0]), Double.valueOf(score[0])),
-                        new Team(teams[1], Double.valueOf(scoreOne[1]) + Double.valueOf(scoreTwo[1]), Double.valueOf(score[1].replace("(ОТ)", ""))),
-                        Double.valueOf(scoreOne[0]) + Double.valueOf(scoreTwo[0]) + Double.valueOf(scoreOne[1]) + Double.valueOf(scoreTwo[1]),
-                        Double.valueOf(score[0]) + Double.valueOf(score[1].replace("(ОТ)", "")));
+                        new Team(teams[0], Double.parseDouble(scoreOne[0]) + Double.parseDouble(scoreTwo[0]), Double.valueOf(score[0])),
+                        new Team(teams[1], Double.parseDouble(scoreOne[1]) + Double.parseDouble(scoreTwo[1]), Double.valueOf(score[1].replace("(ОТ)", ""))),
+                        Double.parseDouble(scoreOne[0]) + Double.parseDouble(scoreTwo[0]) + Double.parseDouble(scoreOne[1]) + Double.parseDouble(scoreTwo[1]),
+                        Double.parseDouble(score[0]) + Double.parseDouble(score[1].replace("(ОТ)", "")));
                 games.add(game);
             }
             gameRepository.saveAll(games);

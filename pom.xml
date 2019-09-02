@@ -10,12 +10,11 @@
     </parent>
     <groupId>com.dyominov</groupId>
     <artifactId>basketball</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>basketball</name>
     <description>predict basketball</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
     </properties>
 
     <dependencies>
