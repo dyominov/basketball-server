@@ -1,11 +1,5 @@
-FROM anapsix/alpine-java
-
-# Required for starting application up.
-RUN apk update && apk add bash
-
+FROM anapsix/alpine-java:8
+COPY /target/basketball-2.1.4.RELEASE.jar /home/app
 WORKDIR /home/app
-COPY ./target/rm-web.jar ./basketball.jar
-
-CMD ["java", "-Xmx1G","-jar","./basketball.jar"]
-
 EXPOSE 8080
+CMD ["java", "-Xmx1G","-jar","./basketball.jar"]
