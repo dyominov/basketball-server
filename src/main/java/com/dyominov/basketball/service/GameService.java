@@ -22,3 +22,5 @@ public interface GameService {
 
     void parseData();
 }
+
+

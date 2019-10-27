@@ -12,5 +12,7 @@ public interface GameRepository extends MongoRepository<Game, String> {
     List<Game> getAllByAwayTeamName(String away);
 
 
+
+
     void deleteById(String id);
 }
