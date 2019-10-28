@@ -1,29 +1,28 @@
 package com.dyominov.basketball.model;
 
-import java.util.Objects;
 
 public class Result {
     private Double percentHome;
-    private Double handicapHalf;
     private Double percentAway;
-    private Double averageHalf;
-    private Double minTotal;
-    private Double averageTotal;
-    private Double maxTotal;
-    private Double handicape;
+    private Double firstQuart;
+    private Double secondQuart;
+    private Double threeQuart;
+    private Double fourQuart;
+    private Double average;
+    private Double handicap;
 
     public Result() {
     }
 
-    public Result(Double percentHome, Double percentAway, Double handicapHalf, Double averageHalf, Double minTotal, Double averageTotal, Double maxTotal, Double handicape) {
+    public Result(Double percentHome, Double percentAway, Double firstQuart, Double secondQuart, Double threeQuart, Double fourQuart, Double average, Double handicap) {
         this.percentHome = percentHome;
-        this.handicapHalf = handicapHalf;
         this.percentAway = percentAway;
-        this.averageHalf = averageHalf;
-        this.minTotal = minTotal;
-        this.averageTotal = averageTotal;
-        this.maxTotal = maxTotal;
-        this.handicape = handicape;
+        this.firstQuart = firstQuart;
+        this.secondQuart = secondQuart;
+        this.threeQuart = threeQuart;
+        this.fourQuart = fourQuart;
+        this.average = average;
+        this.handicap = handicap;
     }
 
     public Double getPercentHome() {
@@ -34,14 +33,6 @@ public class Result {
         this.percentHome = percentHome;
     }
 
-    public Double getHandicapHalf() {
-        return handicapHalf;
-    }
-
-    public void setHandicapHalf(Double handicapHalf) {
-        this.handicapHalf = handicapHalf;
-    }
-
     public Double getPercentAway() {
         return percentAway;
     }
@@ -50,77 +41,65 @@ public class Result {
         this.percentAway = percentAway;
     }
 
-    public Double getAverageHalf() {
-        return averageHalf;
+    public Double getFirstQuart() {
+        return firstQuart;
     }
 
-    public void setAverageHalf(Double averageHalf) {
-        this.averageHalf = averageHalf;
+    public void setFirstQuart(Double firstQuart) {
+        this.firstQuart = firstQuart;
     }
 
-    public Double getMinTotal() {
-        return minTotal;
+    public Double getSecondQuart() {
+        return secondQuart;
     }
 
-    public void setMinTotal(Double minTotal) {
-        this.minTotal = minTotal;
+    public void setSecondQuart(Double secondQuart) {
+        this.secondQuart = secondQuart;
     }
 
-    public Double getAverageTotal() {
-        return averageTotal;
+    public Double getThreeQuart() {
+        return threeQuart;
     }
 
-    public void setAverageTotal(Double averageTotal) {
-        this.averageTotal = averageTotal;
+    public void setThreeQuart(Double threeQuart) {
+        this.threeQuart = threeQuart;
     }
 
-    public Double getMaxTotal() {
-        return maxTotal;
+    public Double getFourQuart() {
+        return fourQuart;
     }
 
-    public void setMaxTotal(Double maxTotal) {
-        this.maxTotal = maxTotal;
+    public void setFourQuart(Double fourQuart) {
+        this.fourQuart = fourQuart;
     }
 
-    public Double getHandicape() {
-        return handicape;
+    public Double getAverage() {
+        return average;
     }
 
-    public void setHandicape(Double handicape) {
-        this.handicape = handicape;
+    public void setAverage(Double average) {
+        this.average = average;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Result result = (Result) o;
-        return Objects.equals(percentHome, result.percentHome) &&
-                Objects.equals(handicapHalf, result.handicapHalf) &&
-                Objects.equals(percentAway, result.percentAway) &&
-                Objects.equals(averageHalf, result.averageHalf) &&
-                Objects.equals(minTotal, result.minTotal) &&
-                Objects.equals(averageTotal, result.averageTotal) &&
-                Objects.equals(maxTotal, result.maxTotal) &&
-                Objects.equals(handicape, result.handicape);
+    public Double getHandicap() {
+        return handicap;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(percentHome, handicapHalf, percentAway, averageHalf, minTotal, averageTotal, maxTotal, handicape);
+    public void setHandicap(Double handicap) {
+        this.handicap = handicap;
     }
 
     @Override
     public String toString() {
         return "Result{" +
                 "percentHome=" + percentHome +
-                ", handicapHalf=" + handicapHalf +
                 ", percentAway=" + percentAway +
-                ", averageHalf=" + averageHalf +
-                ", minTotal=" + minTotal +
-                ", averageTotal=" + averageTotal +
-                ", maxTotal=" + maxTotal +
-                ", handicape=" + handicape +
+                ", firstQuart=" + firstQuart +
+                ", secondQuart=" + secondQuart +
+                ", threeQuart=" + threeQuart +
+                ", fourQuart=" + fourQuart +
+                ", average=" + average +
+                ", handicap=" + handicap +
                 '}';
     }
 }

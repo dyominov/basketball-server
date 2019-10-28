@@ -12,15 +12,15 @@ public interface GameService {
 
     Game getGameById(String id);
 
-    List<Game> getAllByHomeTeamAndAwayTeam(Team homeTeam, Team awayTeam);
+    List<Game> getAllByHomeTeamAndAwayTeam(String homeTeam, String awayTeam);
 
-    Result getResult(final Team homeTeam, final Team awayTeam, final Double score, final Double homeScore, final Double awayScore, final Double handicape, final Double halfScore, final Double halfHandicape);
+    Result getResult(
+            String homeTeam, String awayTeam, Double totalScore, Double homeScore, Double awayScore, Double handicape, Double firstQuarterScore, Double secondQuarterScore, Double thirdQuarterScore, Double fourthQuarterScore
+    );
 
     Game create(Game game);
 
     void deleteById(String id);
-
-    void parseData();
 }
 
 

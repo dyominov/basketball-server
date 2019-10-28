@@ -7,8 +7,7 @@ import com.dyominov.basketball.service.GameService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
 @RestController
@@ -33,30 +32,31 @@ public class GameController {
         return gameService.getGameById(id);
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Game createGame(@RequestBody final Byte[] game) {
-        System.out.println(Arrays.toString(game));
-        return gameService.create(new Game());
-    }
 
     @PutMapping("/result")
     @ResponseStatus(HttpStatus.OK)
     public Result getResult(@RequestBody final DataGame game) {
-        return gameService.getResult(game.getHomeTeam(), game.getAwayTeam(), game.getTotalScore(), game.getHomeScore(), game.getAwayScore(),game.getHandicape(), game.getHalfScore(), game.getHalfHandicape());
+        return gameService.getResult(
+                game.getHomeTeam(),
+                game.getAwayTeam(),
+                game.getTotalScore(),
+                game.getHomeScore(),
+                game.getAwayScore(),
+                game.getHandicape(),
+                game.getFirstQuarterScore(),
+                game.getSecondQuarterScore(),
+                game.getThirdQuarterScore(),
+                game.getFourthQuarterScore());
     }
 
-    @DeleteMapping("/{id}")
+
+    @PostMapping("/name")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteById(@PathVariable final String id) {
-        gameService.deleteById(id);
+    public List<Game> getGamesByName(@RequestBody Map<String, String> map) {
+        String team1 = map.get("team1");
+        String team2 = map.get("team2");
+        return gameService.getAllByHomeTeamAndAwayTeam(team1, team2);
     }
 
-
-    @GetMapping("/parse")
-    @ResponseStatus(HttpStatus.OK)
-    public void parseData() {
-        gameService.parseData();
-    }
 
 }
