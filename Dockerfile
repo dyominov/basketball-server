@@ -1,9 +1,23 @@
 FROM anapsix/alpine-java:8
 
-# Required for starting application up.
+# Install Maven
+RUN apk add --no-cache maven
+
+# Set the working directory
+WORKDIR /home/app
+
+# Copy the source code and pom.xml
+COPY pom.xml .
+COPY src ./src
+
+# Build the application
 RUN mvn clean install
 
-COPY /target/basketball-2.1.4.RELEASE.jar /home/app
-WORKDIR /home/app
+# Copy the built JAR file to the working directory
+COPY target/basketball-2.1.4.RELEASE.jar .
+
+# Expose the port
 EXPOSE 8080
-CMD ["java", "-Xmx1G","-jar","./basketball.jar"]
+
+# Run the application
+CMD ["java", "-Xmx1G", "-jar", "basketball-2.1.4.RELEASE.jar"]
