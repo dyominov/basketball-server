@@ -20,4 +20,4 @@ COPY target/basketball.jar .
 EXPOSE 8080
 
 # Run the application
-CMD ["java", "-Xmx1G", "-jar", "basketball-2.1.4.RELEASE.jar"]
+CMD ["java", "-Xmx1G", "-jar", "basketball.jar"]
