@@ -1,23 +1,9 @@
 FROM anapsix/alpine-java:8
 
-# Install Maven
-RUN apk add --no-cache maven
-
-# Set the working directory
-WORKDIR /home/app
-
-# Copy the source code and pom.xml
-COPY pom.xml .
-COPY src ./src
-
-# Build the application
+# Required for starting application up.
 RUN mvn clean install
 
-# Copy the built JAR file to the working directory
-COPY target/basketball.jar .
-
-# Expose the port
+COPY /target/basketball.jar /home/app
+WORKDIR /home/app
 EXPOSE 8080
-
-# Run the application
-CMD ["java", "-Xmx1G", "-jar", "basketball.jar"]
+CMD ["java", "-Xmx1G","-jar","./basketball.jar"]
