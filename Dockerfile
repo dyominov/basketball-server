@@ -14,7 +14,7 @@ COPY src ./src
 RUN mvn clean install
 
 # Copy the built JAR file to the working directory
-COPY target/basketball-2.1.4.RELEASE.jar .
+COPY target/basketball.jar .
 
 # Expose the port
 EXPOSE 8080
