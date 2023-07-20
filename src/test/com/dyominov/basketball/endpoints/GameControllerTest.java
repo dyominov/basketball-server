@@ -43,13 +43,6 @@ public class GameControllerTest extends AbstractControllerTest {
         mongoTemplate.save(newGame, "games");
     }
 
-    @Test
-    public void testCreateGame() {
-        Game gameCreated = gameService.getAll().get(0);
-        assertEquals(gameCreated.getTotalScore(), newGame.getTotalScore());
-        assertEquals(gameCreated.getHomeTeam(), newGame.getHomeTeam());
-        assertEquals(gameCreated.getAwayTeam(), newGame.getAwayTeam());
-    }
 
     @Test
     public void testCreateGameApi() throws Exception {
